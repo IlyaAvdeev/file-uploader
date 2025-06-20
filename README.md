@@ -8,6 +8,10 @@ quarkus create app one.avdeev:file-uploader:1.0 --kotlin --maven --code
 quarkus ext add config-yaml
 ```
 
+```shell
+quarkus ext add security
+```
+
 # file-uploader
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.

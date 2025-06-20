@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мини хранилище</title>
+    <script>
+        function sendData(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            fetch('http://localhost:8082/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerHTML = data;
+            });
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="sendData(event)">
+        <label for="file">File</label>
+        <input id="file" name="file" type="file"/>
+        <button>Загрузить</button>
+    </form>
+    <div id="result"></div>
+</body>
+</html>
