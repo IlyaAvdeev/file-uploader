@@ -12,6 +12,10 @@ quarkus ext add config-yaml
 quarkus ext add security
 ```
 
+```shell
+cat /private/etc/hosts
+```
+
 # file-uploader
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.

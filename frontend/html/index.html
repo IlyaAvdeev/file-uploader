@@ -7,7 +7,7 @@
         function sendData(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
-            fetch('http://localhost:8082/upload', {
+            fetch('/upload', {
                 method: 'POST',
                 body: formData
             })
