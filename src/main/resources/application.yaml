@@ -5,4 +5,4 @@ quarkus:
   http:
     cors:
       enabled: true
-      origins: http://home:8081, home:8081, http://nginx,
+      origins: http://nginx,
