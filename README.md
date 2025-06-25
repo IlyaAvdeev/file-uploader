@@ -6,10 +6,10 @@ quarkus create app one.avdeev:file-uploader:1.0 --kotlin --maven --code
 
 ```shell
 quarkus ext add config-yaml
-```
-
-```shell
 quarkus ext add security
+quarkus extension add security-jpa
+quarkus extension add rest-jackson
+quarkus extension add elytron-security-properties-file
 ```
 
 ```shell

@@ -3,6 +3,15 @@ storage:
 
 quarkus:
   http:
+    auth:
+      basic: true
     cors:
       enabled: true
       origins: http://nginx,
+  security:
+    users:
+      file:
+        enabled: true
+        plain-text: true
+        users: users.properties
+        roles: roles.properties

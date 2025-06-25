@@ -9,6 +9,9 @@
             const formData = new FormData(event.target);
             fetch('/upload', {
                 method: 'POST',
+                headers: {
+                    "Authorization": 'Basic ${credentials}'
+                },
                 body: formData
             })
             .then(response => response.text())
@@ -16,9 +19,46 @@
                 document.getElementById('result').innerHTML = data;
             });
         }
+        
+        function listFiles() {
+            const currentUrl = window.location.href;
+            const credentialsMatch = currentUrl.match(/:\/\/(.*?)@/);
+            
+            if (credentialsMatch && credentialsMatch[1]) {
+                const credentials = credentialsMatch[1];
+                
+                const apiUrl = '/ls';
+                
+                fetch(apiUrl, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(credentials)
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('API request failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('all_files').textContent =
+                        'API Response: ' + JSON.stringify(data);
+                })
+                .catch(error => {
+                    document.getElementById('all_files').textContent =
+                        'API Error: ' + error.message;
+                });
+            } else {
+                document.getElementById('all_files').textContent =
+                    'No credentials found in URL. Please authenticate.';
+            }
+        }
+
+        window.onload=listFiles;
     </script>
 </head>
 <body>
+    <div id="all_files">Получаем список доступных файлов...</div>
     <form onsubmit="sendData(event)">
         <label for="file">File</label>
         <input id="file" name="file" type="file"/>
